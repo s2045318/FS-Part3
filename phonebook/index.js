@@ -32,6 +32,16 @@ app.get('/', (request, response) => {
     response.json(persons)
   })
   
+
+app.get('/info', (request,reponse) => {
+    console.log('info page reached')
+    const d = new Date();
+    const html = `  <div>
+                      <p>Phonebook has info for ${persons.length} people</p>
+                      <p>${d}</p>
+                    </div>`
+    reponse.send(html)
+})
 const PORT = 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
