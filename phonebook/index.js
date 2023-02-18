@@ -24,14 +24,22 @@ let persons = [
       "number": "39-23-6423122"
     }
 ]
-app.get('/', (request, response) => {
-    response.send('<h1>Hello World!</h1>')
-  })
-  
-  app.get('/api/persons', (request, response) => {
+app.get('/api/persons', (request, response) => {
     response.json(persons)
   })
   
+app.get('/api/persons/:id', (request, response) => {
+    console.log(`GET persons/${request.params}`)
+    const id = Number(request.params.id)
+    console.log(id)
+    const person = persons.find(person => person.id === id)
+    if (person) {
+      response.json(person)
+    } else {
+        response.status(404).end()
+    }
+})
+
 
 app.get('/info', (request,reponse) => {
     console.log('info page reached')
@@ -42,6 +50,20 @@ app.get('/info', (request,reponse) => {
                     </div>`
     reponse.send(html)
 })
+
+app.get('api/persons/:id', (request,response) => {
+    const id = Number(request.params.id)
+    console.log(id)
+
+})
+
+app.delete('/api/persons/:id', (request, response) => {
+    const id = Number(request.params.id)
+    persons = persons.filter(person => person.id !== id)
+    console.log(`${id} succesfully deleted`)
+    response.status(204).end()
+})
+
 const PORT = 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
