@@ -59,13 +59,32 @@ const generateId = () => {
     return Math.floor(Math.random() * (2**15))
 }
 
-  
+const duplicateCheck = (person) => {
+    for (const p of persons) {
+        if (p.name == person.name) {
+            console.log('duplicate name')
+            return true
+        }
+    }
+    return false
+}
 app.post('/api/persons', (request, response) => {
     const body = request.body
     console.log(body)
-    if (!body.name || !body.number) {
+    if (!body.name) {
         return response.status(400).json({ 
-            error: 'name or number missing' 
+            error: 'name missing' 
+        })
+    }
+    if (!body.number) {
+        return response.status(400).json({ 
+            error: 'number missing' 
+        })
+    }
+    if (duplicateCheck(body.name)) {
+        console.log(body.name)
+        return response.status(400).json({ 
+            error: `${body.name} is already in the phonebook` 
         })
     }
 
