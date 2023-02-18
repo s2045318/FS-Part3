@@ -1,7 +1,7 @@
 console.log("Hello World")
 const express = require('express')
 const app = express()
-
+app.use(express.json())
 let persons = [
     { 
       "id": 1,
@@ -41,16 +41,6 @@ app.get('/api/persons/:id', (request, response) => {
 })
 
 
-app.get('/info', (request,reponse) => {
-    console.log('info page reached')
-    const d = new Date();
-    const html = `  <div>
-                      <p>Phonebook has info for ${persons.length} people</p>
-                      <p>${d}</p>
-                    </div>`
-    reponse.send(html)
-})
-
 app.get('api/persons/:id', (request,response) => {
     const id = Number(request.params.id)
     console.log(id)
@@ -63,6 +53,31 @@ app.delete('/api/persons/:id', (request, response) => {
     console.log(`${id} succesfully deleted`)
     response.status(204).end()
 })
+
+
+const generateId = () => {
+    return Math.floor(Math.random() * (2**15))
+}
+
+  
+app.post('/api/persons', (request, response) => {
+    const body = request.body
+    console.log(body)
+    if (!body.name || !body.number) {
+        return response.status(400).json({ 
+            error: 'name or number missing' 
+        })
+    }
+
+    const person = {
+        name: body.name,
+        number: body.number,
+        id: generateId(),
+    }
+    persons = persons.concat(person)
+    response.json(persons)
+})
+
 
 const PORT = 3001
 app.listen(PORT, () => {
