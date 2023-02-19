@@ -1,7 +1,12 @@
+// node_modules/.bin/nodemon index.js
 console.log("Hello World")
 const express = require('express')
 const app = express()
+const cors = require('cors')
+app.use(cors())
 app.use(express.json())
+
+
 let persons = [
     { 
       "id": 1,
