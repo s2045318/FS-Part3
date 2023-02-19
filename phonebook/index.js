@@ -1,5 +1,5 @@
 // node_modules/.bin/nodemon index.js
-console.log("'Hello' World")
+console.log("'Hello' World server started")
 const express = require('express')
 const app = express()
 const cors = require('cors')
