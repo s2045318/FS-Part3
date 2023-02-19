@@ -1,4 +1,4 @@
-GET http://localhost:3001/api/persons
+GET https://phonebook-web-service-x5ew.onrender.com
 
 ###
 GET http://localhost:3001/api/persons/1
