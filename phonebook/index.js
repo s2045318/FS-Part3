@@ -1,10 +1,11 @@
 // node_modules/.bin/nodemon index.js
-console.log("';jda' World")
+console.log("'Hello' World")
 const express = require('express')
 const app = express()
 const cors = require('cors')
 app.use(cors())
 app.use(express.json())
+app.use(express.static('build'))
 
 
 let persons = [
