@@ -1,6 +1,9 @@
 GET https://phonebook-web-service-x5ew.onrender.com/api/persons
 
 ###
+GET https://localhost:3001/api/persons
+
+###
 GET https://phonebook-web-service-x5ew.onrender.com/api/persons/1
 
 ###
