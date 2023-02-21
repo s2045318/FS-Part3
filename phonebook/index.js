@@ -45,7 +45,34 @@ app.get('/api/persons', (request, response) => {
       })
   })
   
+app.post('/api/persons', (request, response) => {
+    const body = request.body
+    console.log(body)
+    if (!body.name) {
+        return response.status(400).json({ 
+            error: 'name missing' 
+        })
+    }
+    if (!body.number) {
+        return response.status(400).json({ 
+            error: 'number missing' 
+        })
+    }
+  //  if (duplicateCheck(body.name)) {
+     //   console.log(body.name)
+    //    return response.status(400).json({ 
+    //        error: `${body.name} is already in the phonebook` 
+   //     })
+   // }
 
+    const person = new Person({
+        name: body.name,
+        number: body.number
+    })
+    person.save().then(savedPerson => {
+        response.json(savePerson)
+      })
+})
 
 
 const PORT = process.env.PORT 
