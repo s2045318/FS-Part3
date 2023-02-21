@@ -1,0 +1,31 @@
+GET https://phonebook-web-service-x5ew.onrender.com/api/persons
+
+###
+GET http://localhost:3001/api/persons
+
+###
+GET https://phonebook-web-service-x5ew.onrender.com/api/persons
+
+###
+DELETE http://localhost:3001/api/persons
+
+###
+GET http://localhost:3001/api/info
+
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "ABC",
+    "number": "+4407960402830"
+}
+
+###
+POST https://phonebook-web-service-x5ew.onrender.com/api/persons/ 
+content-type: application/json
+
+{
+    "name": "ABC",
+    "number": "+4407960402830"
+}
