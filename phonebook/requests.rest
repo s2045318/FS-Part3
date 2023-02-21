@@ -22,7 +22,7 @@ content-type: application/json
 }
 
 ###
-POST https://phonebook-web-service-x5ew.onrender.com/api/persons/ 
+POST https://phonebook-web-service-x5ew.onrender.com/api/persons
 content-type: application/json
 
 {
