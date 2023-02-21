@@ -20,3 +20,12 @@ content-type: application/json
     "name": "ABC",
     "number": "+4407960402830"
 }
+
+###
+POST https://phonebook-web-service-x5ew.onrender.com/api/persons/ 
+content-type: application/json
+
+{
+    "name": "ABC",
+    "number": "+4407960402830"
+}
