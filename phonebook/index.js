@@ -14,8 +14,8 @@ app.get('/api/persons', (request, response) => {
     console.log('request sent for all persons')
     Person.find({}).then(result => {
         response.json(result)
-        result.forEach(note => {
-            console.log(note)
+        result.forEach(person => {
+            console.log('Person:', person)
         })
       })
   })
