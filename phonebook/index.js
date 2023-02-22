@@ -22,7 +22,7 @@ app.get('/api/persons', (request, response) => {
   
 app.post('/api/persons', (request, response) => {
     const body = request.body
-    console.log(body)
+    console.log("post body: ", body)
     if (!body.name) {
         return response.status(400).json({ 
             error: 'name missing' 
@@ -48,6 +48,12 @@ app.post('/api/persons', (request, response) => {
         response.json(savedPerson)
       })
 })
+
+app.delete('/api/persons/:id', (request, response) => {
+    console.log('request sent for deletion ')
+    Person.remove({id: ObjectId(request.body) }).then(result => console.log("Deleted"))
+})
+
 
 
 const PORT = process.env.PORT 
