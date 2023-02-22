@@ -49,7 +49,7 @@ app.post('/api/persons', (request, response) => {
       })
 })
 
-app.delete('/api/persons/:id', (request, response) => {
+app.delete('/api/persons', (request, response) => {
     console.log('request sent for deletion ')
     Person.remove({id: ObjectId(request.body) }).then(result => console.log("Deleted"))
 })
