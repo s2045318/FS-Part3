@@ -57,6 +57,20 @@ app.delete('/api/persons/:id', (request, response, next) => {
       .catch(error => next(error))
   })
 
+app.get('/api/persons/:id', (request, response, next) => {
+    console.log(`getting ${request.params.id}`)
+    Person.findById(request.params.id)
+        .then(person => {
+            if (person)  {
+                response.jsom(person)
+            } else {
+                console.log(`${request.params.id} not found in the database`)
+                response.status(404).end()
+            }
+            })
+            .catch(error => next(error))
+})
+
 
 const PORT = process.env.PORT 
 app.listen(PORT, () => {
