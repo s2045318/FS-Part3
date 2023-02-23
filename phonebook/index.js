@@ -49,11 +49,13 @@ app.post('/api/persons', (request, response) => {
       })
 })
 
-app.delete('/api/persons', (request, response) => {
-    console.log('request sent for deletion ')
-    Person.remove({id: ObjectId(request.body) }).then(result => console.log("Deleted"))
-})
-
+app.delete('/api/persons/:id', (request, response, next) => {
+    Person.findByIdAndRemove(request.params.id)
+      .then(result => {
+        response.status(204).end()
+      })
+      .catch(error => next(error))
+  })
 
 
 const PORT = process.env.PORT 
