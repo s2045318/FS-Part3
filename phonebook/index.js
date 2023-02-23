@@ -62,7 +62,7 @@ app.get('/api/persons/:id', (request, response, next) => {
     Person.findById(request.params.id)
         .then(person => {
             if (person)  {
-                response.jsom(person)
+                response.json(person)
             } else {
                 console.log(`${request.params.id} not found in the database`)
                 response.status(404).end()
